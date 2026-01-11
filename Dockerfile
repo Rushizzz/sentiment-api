@@ -4,7 +4,14 @@ WORKDIR /app
 
 COPY requirements.txt .
 
+# install libraries
 RUN pip install -r requirements.txt 
+
+# copy loader script
+COPY model_loader.py .
+
+# run the loader script to download and save the model
+RUN python model_loader.py
 
 COPY . .
 

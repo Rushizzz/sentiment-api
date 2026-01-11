@@ -9,7 +9,8 @@ from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 # Load the sentiment analysis model
-classifier = pipeline("sentiment-analysis")
+model_path = "./model_directory"
+classifier = pipeline("sentiment-analysis", model=model_path, tokenizer=model_path)
 
 class SentimentRequest(BaseModel):
     text: str
