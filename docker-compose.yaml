@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # Service 1: Database
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+    environment:
+      - POSTGRES_USER=user 
+      - POSTGRES_PASSWORD=password 
+      - POSTGRES_DB=sentiment_db
+
+  # Service 2: Application
+  app:
+    build: . # Build from Dockerfile in current directory
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db   # Wait for db to be ready
+    environment: 
+      # magic connection string
+      - DATABASE_URL=postgresql://user:password@db:5432/sentiment_db
+  
+volumes:
+  postgres_data: # persistent storage for DB

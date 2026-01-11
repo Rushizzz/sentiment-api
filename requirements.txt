@@ -4,3 +4,4 @@ transformers
 torch 
 torchvision --index-url https://download.pytorch.org/whl/cpu
 sqlalchemy
+psycopg2-binary

@@ -1,6 +1,7 @@
 from fastapi import FastAPI 
 from transformers import pipeline
 from pydantic import BaseModel
+import os
 
 # for sql
 from datetime import datetime
@@ -14,8 +15,24 @@ class SentimentRequest(BaseModel):
     text: str
 
 # Create database connection 
-DATABASE_URL = "sqlite:///./sentiment.db"
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+# DATABASE_URL = "sqlite:///./sentiment.db"
+
+# env var first one not found then use second
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./sentiment.db")
+
+# engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+# 1. Define the connection arguments based on the database type
+connect_args = {}
+
+# Only use "check_same_thread" if we are actually using SQLite
+if "sqlite" in DATABASE_URL:
+    connect_args = {"check_same_thread": False}
+
+# 2. Create the engine with the dynamic arguments
+engine = create_engine(
+    DATABASE_URL,
+    connect_args=connect_args
+)
 
 # Create a session factory (to talk to DB)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
