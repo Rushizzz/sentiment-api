@@ -6,7 +6,7 @@ A FastAPI-based sentiment analysis service that uses Hugging Face's transformers
 
 This API is deployed and running on **[Render.com](https://render.com)**
 
-- **Live API URL**: [Deployed on Render](https://sentiment-app-v1-7czw.onrender.com/)
+- **Live API URL**: [https://sentiment-app-v1-7czw.onrender.com/](https://sentiment-app-v1-7czw.onrender.com/)
 - **Status**: Production Ready
 
 ## 🛠 Tech Stack
