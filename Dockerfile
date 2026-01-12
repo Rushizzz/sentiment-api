@@ -13,7 +13,7 @@ COPY model_loader.py .
 # run the loader script to download and save the model
 RUN python model_loader.py
 
-COPY . .
+COPY main.py .
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 

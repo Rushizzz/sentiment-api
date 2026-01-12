@@ -1,7 +1,9 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 fastapi
 uvicorn
 transformers
-torch 
-torchvision --index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
 sqlalchemy
 psycopg2-binary
